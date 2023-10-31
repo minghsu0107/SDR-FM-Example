@@ -51,6 +51,10 @@ mkdir build && cd build
 cmake -DCMAKE_HOST_SYSTEM_PROCESSOR:STRING=arm64 -DLIBUSB_INCLUDE_DIR=/opt/homebrew/Cellar/libusb/1.0.26/include/libusb-1.0 -DLIBUSB_LIBRARY=/opt/homebrew/lib/libusb-1.0.dylib ../
 sudo make && sudo make install
 ```
+## Build Docker Image
+```bash
+docker build -t minghsu0107/rtlsdr-example-api .
+```
 ## Getting Started
 Start a `rtl_rpcd` daemon on the host machine, which allows remote access of SDR hardware at `127.0.0.1:40000` via `librtlsdr` command-line tools.
 
