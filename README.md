@@ -1,4 +1,4 @@
-# SDR FM Audio Example
+# SDR for FM Audio
 This example service utilizes software-defined radio (SDR) to extract audio streams from FM radio broadcasts. It leverages the popular open-source `librtlsdr` library and related utilities like `rtl_fm` and `rtl_power` to interface with SDR hardware connected to the edge node. Specifically, it controls the tuning and data capture from the hardware to receive transmissions at specified frequencies. For example, it can tune to an FM station frequency, acquire the audio broadcast data, and then process it.
 
 SDR shifts the radio signal processing like tuning and demodulation from specialized analog hardware to software running on a computer's digital CPU. This allows SDR to access a wider range of the radio spectrum than a traditional analog receiver locked to a single band like FM. If physical SDR hardware is not available, the service can use mock data that emulates a radio transmission, providing flexibility. So even without a real over-the-air signal, the service can ingest audio streams as if they were broadcast over FM radio.
