@@ -1,4 +1,5 @@
 # Real-time FM Audio Stream
+This example demonstrates how to process and play real-time FM audio stream.
 ## Dependencies
 For Debian / Ubuntu Linux:
 ```bash
