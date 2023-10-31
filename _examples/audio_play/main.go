@@ -58,6 +58,7 @@ func captureAudio(freq int) {
 		return
 	}
 	defer stream.Stop()
+
 	for {
 		audio := make([]byte, 2*len(out))
 		_, err = stdout.Read(audio)
