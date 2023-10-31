@@ -43,12 +43,20 @@ Check the version and library paths of `libusb`.
 ```bash
 brew ls libusb
 ```
-Build and install the librtlsdr binaries and libraries, setting the appropriate configuration and library paths for the system. For example, on `arm64` with `libusb` version `1.0.26`:
+Build and install the librtlsdr binaries and libraries, setting the appropriate configuration and library paths for the system. For example, on Mac M2 with `libusb` version `1.0.26`:
 ```bash
 git clone https://github.com/minghsu0107/librtlsdr
 cd librtlsdr
 mkdir build && cd build
 cmake -DCMAKE_HOST_SYSTEM_PROCESSOR:STRING=arm64 -DLIBUSB_INCLUDE_DIR=/opt/homebrew/Cellar/libusb/1.0.26/include/libusb-1.0 -DLIBUSB_LIBRARY=/opt/homebrew/lib/libusb-1.0.dylib ../
+sudo make && sudo make install
+```
+Another example when using Mac M1 with `libusb` version `1.0.26`:
+```bash
+git clone https://github.com/minghsu0107/librtlsdr
+cd librtlsdr
+mkdir build && cd build
+cmake -DCMAKE_HOST_SYSTEM_PROCESSOR:STRING=arm64 -DLIBUSB_INCLUDE_DIR=/usr/local/Cellar/libusb/1.0.26/include/libusb-1.0 -DLIBUSB_LIBRARY=/usr/local/lib/libusb-1.0.dylib ../
 sudo make && sudo make install
 ```
 ## Build Docker Image
