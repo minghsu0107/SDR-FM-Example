@@ -13,8 +13,11 @@ Start the `rtl_rpcd` daemon on the host machine:
 ```bash
 RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
 ```
-Play real-time FM audio stream from remote SDR hardware at frequency 99.7M:
+Play real-time FM audio stream from remote SDR hardware at frequency 94.1M:
 ```bash
 go build -o app .
-./app 99700000
+
+export RTLSDR_RPC_SERV_ADDR="127.0.0.1"
+export RTLSDR_RPC_SERV_PORT="40000"
+./app 94100000
 ```
