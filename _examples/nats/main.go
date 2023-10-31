@@ -58,12 +58,8 @@ func captureAudio(freq int) {
 			NatsOptions: options,
 			Marshaler:   marshaler,
 			JetStream: nats.JetStreamConfig{
-				Disabled:      false,
-				AutoProvision: false,
-				ConnectOptions: []nc.JSOpt{
-					// the maximum outstanding async publishes that can be inflight at one time
-					nc.PublishAsyncMaxPending(16384),
-				},
+				Disabled:       false,
+				AutoProvision:  false,
 				PublishOptions: nil,
 				TrackMsgId:     false,
 				AckAsync:       false,
@@ -77,8 +73,8 @@ func captureAudio(freq int) {
 	}
 
 	i := 0
+	audio := make([]byte, 2*8192)
 	for {
-		audio := make([]byte, 2*8192)
 		_, err = stdout.Read(audio)
 		if err == io.EOF {
 			break
@@ -87,7 +83,9 @@ func captureAudio(freq int) {
 			fmt.Println(err)
 			return
 		}
-		msg := message.NewMessage(strconv.Itoa(i), audio)
+		payload := make([]byte, 2*8192)
+		copy(payload, audio)
+		msg := message.NewMessage(strconv.Itoa(i), payload)
 		if err := publisher.Publish(natsSubject, msg); err != nil {
 			fmt.Println(err)
 		}
