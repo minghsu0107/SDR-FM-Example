@@ -61,7 +61,7 @@ RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
 Run the API server inside a container, which retrieves IQ data remotely from the `rtl_rpcd` daemon on the host machine and exposes audio data via HTTP APIs:
 
 ```bash
-docker run --rm -p 8080:8080 -e RTLSDR_RPC_SERV_ADDR=host.docker.internal -e RTLSDR_RPC_SERV_PORT=40000 minghsu0107/rtlsdr-example-api
+docker run -d --rm -p 8080:8080 -e RTLSDR_RPC_SERV_ADDR=host.docker.internal -e RTLSDR_RPC_SERV_PORT=40000 minghsu0107/rtlsdr-example-api
 ```
 The API server is now configured to listen on port 8080 inside the container, which is forwarded from port 8080 on the host machine. This allows the API server to be accessed from the host machine at `http://localhost:8080`.
 ## APIs
