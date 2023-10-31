@@ -90,6 +90,7 @@ If the SDR hardware is not present or can not be used for some reason it will re
 Get a 30 second chunk of raw audio.
 
 ```bash
+# brew install sox
 curl localhost:8080/audio/99700000 | play --rate 32k -t raw -e s -b 16 -c 1 -V1 -
 ```
 
