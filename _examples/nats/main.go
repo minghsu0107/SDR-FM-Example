@@ -93,6 +93,9 @@ func captureAudio(freq int) {
 		i++
 		select {
 		case <-sig:
+			if err = cmd.Process.Kill(); err != nil {
+				fmt.Println(err)
+			}
 			return
 		default:
 		}
