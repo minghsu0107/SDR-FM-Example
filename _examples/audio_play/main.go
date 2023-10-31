@@ -59,8 +59,8 @@ func captureAudio(freq int) {
 	}
 	defer stream.Stop()
 
+	audio := make([]byte, 2*len(out))
 	for {
-		audio := make([]byte, 2*len(out))
 		_, err = stdout.Read(audio)
 		if err == io.EOF {
 			break
