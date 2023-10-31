@@ -1,0 +1,20 @@
+# Real-time FM Audio Stream
+## Dependencies
+For Debian / Ubuntu Linux:
+```bash
+apt-get install -y pkg-config portaudio19-dev
+```
+For OS X:
+```bash
+brew install pkg-config portaudio
+```
+## Getting Started
+Start the `rtl_rpcd` daemon on the host machine:
+```bash
+RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
+```
+Play real-time FM audio stream from remote SDR hardware at frequency 99.7M:
+```bash
+go build -o app .
+./app 99700000
+```
