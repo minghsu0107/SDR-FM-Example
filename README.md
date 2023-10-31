@@ -43,7 +43,7 @@ Check the version and library paths of `libusb`.
 ```bash
 brew ls libusb
 ```
-Build and install the librtlsdr binaries and libraries, setting the appropriate configuration and library paths for the system. For example, on arm64 with libusb version `1.0.26`:
+Build and install the librtlsdr binaries and libraries, setting the appropriate configuration and library paths for the system. For example, on `arm64` with `libusb` version `1.0.26`:
 ```bash
 git clone https://github.com/minghsu0107/librtlsdr
 cd librtlsdr
