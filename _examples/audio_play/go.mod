@@ -1,4 +1,4 @@
-module github.com/minghsu0107/SDR-FM-Example/_examples/audio_stream
+module github.com/minghsu0107/SDR-FM-Example/_examples/audio_play
 
 go 1.20
 
