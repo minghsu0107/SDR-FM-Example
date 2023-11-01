@@ -38,7 +38,7 @@ func captureAudio(freq int) {
 		fmt.Println(err)
 		return
 	}
-	time.Sleep(100 * time.Millisecond)
+	time.Sleep(3 * time.Second)
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 

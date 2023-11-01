@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server:
+  nats-client:
     image: minghsu0107/rtlsdr-example-nats-client
     restart: always
     command:
