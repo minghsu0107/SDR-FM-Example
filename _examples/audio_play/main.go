@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"strconv"
 	"syscall"
+	"time"
 
 	"github.com/gordonklaus/portaudio"
 )
@@ -61,7 +62,20 @@ func captureAudio(freq int) {
 
 	audio := make([]byte, 2*len(out))
 	for {
-		_, err = stdout.Read(audio)
+		n, err := stdout.Read(audio)
+		for n < 16384 {
+			bytesRead, err := stdout.Read(audio[n:])
+			if err != nil {
+				if err == io.EOF {
+					break
+				}
+				fmt.Println(err)
+			}
+			n += bytesRead
+			if n < 16384 {
+				time.Sleep(10 * time.Millisecond)
+			}
+		}
 		if err == io.EOF {
 			break
 		}
@@ -72,11 +86,9 @@ func captureAudio(freq int) {
 
 		if err = binary.Read(bytes.NewBuffer(audio), binary.LittleEndian, out); err != nil {
 			fmt.Println(err)
-			return
 		}
 		if err = stream.Write(); err != nil {
 			fmt.Println(err)
-			return
 		}
 		select {
 		case <-sig:

@@ -18,9 +18,5 @@ RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
 ```
 Play real-time FM audio stream from remote SDR hardware at frequency 94.1M:
 ```bash
-go build -o app .
-
-export RTLSDR_RPC_SERV_ADDR="127.0.0.1"
-export RTLSDR_RPC_SERV_PORT="40000"
-./app 94100000
+RTLSDR_RPC_SERV_ADDR="127.0.0.1" RTLSDR_RPC_SERV_PORT="40000" go run main.go 94100000
 ```
