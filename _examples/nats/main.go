@@ -38,7 +38,6 @@ func captureAudio(freq int) {
 		fmt.Println(err)
 		return
 	}
-	time.Sleep(3 * time.Second)
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 
@@ -75,7 +74,20 @@ func captureAudio(freq int) {
 	i := 0
 	audio := make([]byte, 2*8192)
 	for {
-		_, err = stdout.Read(audio)
+		n, err := stdout.Read(audio)
+		for n < 16384 {
+			bytesRead, err := stdout.Read(audio[n:])
+			if err != nil {
+				if err == io.EOF {
+					break
+				}
+				fmt.Println(err)
+			}
+			n += bytesRead
+			if n < 16384 {
+				time.Sleep(10 * time.Millisecond)
+			}
+		}
 		if err == io.EOF {
 			break
 		}
@@ -98,7 +110,6 @@ func captureAudio(freq int) {
 			}
 			return
 		default:
-			time.Sleep(100 * time.Millisecond)
 		}
 	}
 }

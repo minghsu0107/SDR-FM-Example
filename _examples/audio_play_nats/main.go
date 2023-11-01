@@ -98,11 +98,9 @@ func main() {
 		copy(audio, msg.Payload)
 		if err = binary.Read(bytes.NewBuffer(audio), binary.LittleEndian, out); err != nil {
 			fmt.Println(err)
-			return
 		}
 		if err = stream.Write(); err != nil {
 			fmt.Println(err)
-			return
 		}
 		msg.Ack()
 		select {
