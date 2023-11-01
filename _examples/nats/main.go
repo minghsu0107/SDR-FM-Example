@@ -71,7 +71,7 @@ func captureAudio(freq int) {
 		return
 	}
 
-	i := 0
+	var i uint64 = 0
 	audio := make([]byte, 2*8192)
 	for {
 		n, err := stdout.Read(audio)
@@ -97,7 +97,7 @@ func captureAudio(freq int) {
 		}
 		payload := make([]byte, 2*8192)
 		copy(payload, audio)
-		msg := message.NewMessage(strconv.Itoa(i), payload)
+		msg := message.NewMessage(strconv.FormatUint(i, 10), payload)
 		if err := publisher.Publish(natsSubject, msg); err != nil {
 			fmt.Println(err)
 		}
