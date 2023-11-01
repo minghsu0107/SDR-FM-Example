@@ -1,6 +1,8 @@
 # Real-time FM Audio Stream
 This example demonstrates how to process and play real-time FM audio stream.
 ## Dependencies
+To enable real-time local playback of FM audio, the following dependencies are required.
+
 For Debian / Ubuntu Linux:
 ```bash
 apt-get install -y pkg-config portaudio19-dev
