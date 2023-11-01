@@ -39,7 +39,7 @@ func main() {
 		nc.ReconnectWait(1 * time.Second),
 	}
 	subscribeOptions := []nc.SubOpt{
-		nc.DeliverLast(),
+		nc.DeliverNew(),
 		nc.AckExplicit(),
 	}
 	jsConfig := nats.JetStreamConfig{
@@ -75,11 +75,12 @@ func main() {
 
 	out := make([]int16, 8192)
 	// get audio format information
-	rate := 32000
+	rate := 16000
 
 	portaudio.Initialize()
 	defer portaudio.Terminate()
-	stream, err := portaudio.OpenDefaultStream(0, 1, float64(rate), len(out), &out)
+	// stereo audio
+	stream, err := portaudio.OpenDefaultStream(0, 2, float64(rate), len(out), &out)
 	if err != nil {
 		fmt.Println(err)
 		return

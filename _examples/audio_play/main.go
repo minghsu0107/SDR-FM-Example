@@ -42,12 +42,13 @@ func captureAudio(freq int) {
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 
 	// get audio format information
-	rate := 32000
+	rate := 16000
 
 	portaudio.Initialize()
 	defer portaudio.Terminate()
 	out := make([]int16, 8192)
-	stream, err := portaudio.OpenDefaultStream(0, 1, float64(rate), len(out), &out)
+	// stereo audio (2 channels at 16k sampling rate) instead of monophonic audio (1 channel at 32k sampling rate)
+	stream, err := portaudio.OpenDefaultStream(0, 2, float64(rate), len(out), &out)
 	if err != nil {
 		fmt.Println(err)
 		return
