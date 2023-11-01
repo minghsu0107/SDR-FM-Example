@@ -94,7 +94,9 @@ func main() {
 
 	go func() {
 		<-sig
-		subscriber.Close()
+		if err = subscriber.Close(); err != nil {
+			fmt.Println(err)
+		}
 	}()
 
 	for msg := range msgs {
