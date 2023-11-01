@@ -22,7 +22,8 @@ COPY --from=rtl_build /usr/local/bin/rtl_test /bin/rtl_test
 COPY --from=rtl_build /usr/local/bin/rtl_fm /bin/rtl_fm
 COPY --from=rtl_build /usr/local/bin/rtl_power /bin/rtl_power
 COPY --from=rtl_build /usr/local/lib/librtlsdr.so.0 /usr/lib/librtlsdr.so.0
-WORKDIR /
+RUN mkdir -p /app
+WORKDIR /app
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 ENTRYPOINT ["/bin/app"]
