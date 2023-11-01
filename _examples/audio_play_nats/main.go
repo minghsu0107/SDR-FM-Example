@@ -92,6 +92,11 @@ func main() {
 	}
 	defer stream.Stop()
 
+	go func() {
+		<-sig
+		subscriber.Close()
+	}()
+
 	for msg := range msgs {
 		fmt.Println("sub: ", msg.UUID)
 		audio := make([]byte, 2*8192)
@@ -103,10 +108,5 @@ func main() {
 			fmt.Println(err)
 		}
 		msg.Ack()
-		select {
-		case <-sig:
-			return
-		default:
-		}
 	}
 }
