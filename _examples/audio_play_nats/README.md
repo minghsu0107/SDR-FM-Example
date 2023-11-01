@@ -1,4 +1,6 @@
 # FM Audio Stream on NATS JetStream
+<img width="844" alt="image" src="https://github.com/minghsu0107/SDR-FM-Example/assets/50090692/17cd9174-bd8c-4e71-82fa-c2f7a290228f">
+
 ## Dependencies
 To enable real-time local playback of FM audio, the following dependencies are required.
 
