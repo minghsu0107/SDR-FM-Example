@@ -14,7 +14,7 @@ brew install pkg-config portaudio
 ## Getting Started
 Start the `rtl_rpcd` daemon on the host machine:
 ```bash
-RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
+RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd >> rtlrpcd.log 2>&1 &
 ```
 Play real-time FM audio stream from remote SDR hardware at frequency 94.1M:
 ```bash

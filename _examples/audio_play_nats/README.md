@@ -18,7 +18,7 @@ brew install pkg-config portaudio
 ## Usage
 Start the `rtl_rpcd` daemon on the host machine.
 ```bash
-RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
+RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd >> rtlrpcd.log 2>&1 &
 ```
 ### Local Setup
 Start the FM audio publisher and NATS JetStream inside containers respectively. The publisher extracts FM audio at frequency 99.7M and streams data to NATS JetStream.

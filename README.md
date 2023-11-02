@@ -67,7 +67,7 @@ docker build -t minghsu0107/rtlsdr-example-api .
 Start a `rtl_rpcd` daemon on the host machine, which allows remote access of SDR hardware at `127.0.0.1:40000` via `librtlsdr` command-line tools.
 
 ```bash
-RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd &
+RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd >> rtlrpcd.log 2>&1 &
 ```
 
 Run the API server inside a container, which retrieves IQ data remotely from the `rtl_rpcd` daemon on the host machine and exposes audio data via HTTP APIs:
