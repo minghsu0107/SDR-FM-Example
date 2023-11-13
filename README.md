@@ -6,7 +6,7 @@ SDR shifts the radio signal processing like tuning and demodulation from special
 For more information about the `librtlsdr` library and the `rtl_fm` usage, see [librtlsdr](https://github.com/librtlsdr/librtlsdr) and [Rtl_fm Guide](http://kmkeen.com/rtl-demod-guide/). Overall, this service exemplifies using SDR to acquire and process wireless signals at the edge.
 
 ## Install Dependencies
-In order to extract IQ data from the SDR hardware, the `librtlsdr` binaries have to be installed on the host machine.
+In order to extract raw data from the SDR hardware, the `librtlsdr` binaries have to be installed on the host machine.
 
 First, have `gcc`, `g++`, and `make` installed. 
 
@@ -70,7 +70,7 @@ Start a `rtl_rpcd` daemon on the host machine, which allows remote access of SDR
 RTLSDR_RPC_SERV_ADDR=127.0.0.1 RTLSDR_RPC_SERV_PORT=40000 rtl_rpcd >> rtlrpcd.log 2>&1 &
 ```
 
-Run the API server inside a container, which retrieves IQ data remotely from the `rtl_rpcd` daemon on the host machine and exposes audio data via HTTP APIs:
+Run the API server inside a container, which retrieves raw data remotely from the `rtl_rpcd` daemon on the host machine and exposes audio data via HTTP APIs:
 
 ```bash
 docker run -d --rm -p 8080:8080 -e RTLSDR_RPC_SERV_ADDR=host.docker.internal -e RTLSDR_RPC_SERV_PORT=40000 minghsu0107/rtlsdr-example-api
