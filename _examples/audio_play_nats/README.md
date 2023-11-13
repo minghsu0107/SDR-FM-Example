@@ -2,7 +2,7 @@
 
 The following figure provides a high-level architecture overview of the real-time FM audio stream processing workflow:
 
-<img width="695" alt="image" src="https://github.com/minghsu0107/SDR-FM-Example/assets/50090692/583e1bd4-a861-49d1-9625-143490a216e1">
+<img width="726" alt="image" src="https://github.com/minghsu0107/SDR-FM-Example/assets/50090692/224f5155-a273-4c0a-bb0c-9273804a359b">
 
 ## Dependencies
 To enable real-time local playback of FM audio for demonstration purpose, the following dependencies are required.
