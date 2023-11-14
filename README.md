@@ -12,8 +12,12 @@ The following shows the SDR receiving process for FM radio:
 4. A digital downconverter mixes this signal down to baseband, producing complex I/Q samples. This I/Q data represents the DSB signal centered at 0 Hz, with the audio modulated onto both sidebands.
 5. An IQ demodulator processes the I/Q samples, taking the arctangent of Q/I to extract the upper or lower sideband. This converts the DSB signal to a single sideband (SSB) signal.
 6. Apply FM demodulation: apply low pass filter (LPF) to SSB signal to remove carrier, leaving only the audio signal. The cutoff frequency of the LPF depends on the highest expected audio frequency. For FM radio audio, a cutoff around 15 kHz is typical.
-7. Resample filtered audio to appropriate sample rate (eg. 32k Hz for stereo (2-channel) audio) using a digital resampler
+7. Resample filtered audio to appropriate sample rate (eg. 32k Hz for stereo (2-channel) audio) using a digital resampler.
 
+Why RTL-SDR hardware digitally downconverts the received FM signal to baseband I/Q samples rather than working with the original RF double sideband (DSB) signal?
+1. Digital processing is easier at baseband: Operating on the I/Q samples at 0 Hz is simpler than trying to process the RF signal at the high carrier frequency. This avoids dealing with high sample rates.
+2. Avoids analog demodulation circuits: Baseband I/Q sampling means FM demodulation can be done digitally rather than needing analog FM demod hardware.
+3. Hardware simplicity: Only a tunable RF front-end and ADC are needed since demodulation is done in software.
 ## Install Dependencies
 In order to extract raw data from the SDR hardware, the `librtlsdr` binaries have to be installed on the host machine.
 
