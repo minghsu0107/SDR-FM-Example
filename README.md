@@ -5,19 +5,15 @@ SDR shifts the radio signal processing like tuning and demodulation from special
 
 For more information about the `librtlsdr` library and the `rtl_fm` usage, see [librtlsdr](https://github.com/librtlsdr/librtlsdr) and [Rtl_fm Guide](http://kmkeen.com/rtl-demod-guide/). Overall, this service exemplifies using SDR to acquire and process wireless signals at the edge.
 ## Side Note
-The following shows the SDR receiving process for FM radio:
-1. Radio stations broadcast FM signals centered around their carrier frequencies. These are double sideband (DSB) signals with the audio modulated onto both sidebands symmetrically around the carrier (center freq ±75 kHz).
-2. The SDR sensor first tunes to the desired station's frequency (e.g. 99.7 MHz). It also applies a bandpass filter centered on that frequency to select that station's signal and reject other stations.
-3. The filtered signal is digitized, capturing the entire channel bandwidth (150 kHz) of the desired station.
-4. A digital downconverter mixes this signal down to baseband, producing complex I/Q samples. This I/Q data represents the DSB signal centered at 0 Hz, with the audio modulated onto both sidebands.
-5. An IQ demodulator processes the I/Q samples, taking the arctangent of Q/I to extract the upper or lower sideband. This converts the DSB signal to a single sideband (SSB) signal.
-6. Apply FM demodulation: apply low pass filter (LPF) to SSB signal to remove carrier, leaving only the audio signal. The cutoff frequency of the LPF depends on the highest expected audio frequency. For FM radio audio, a cutoff around 15 kHz is typical.
-7. Resample filtered audio to appropriate sample rate (eg. 32k Hz for stereo (2-channel) audio) using a digital resampler.
-
-Why RTL-SDR hardware digitally downconverts the received FM signal to baseband I/Q samples rather than working with the original RF double sideband (DSB) signal?
-1. Digital processing is easier at baseband: Operating on the I/Q samples at 0 Hz is simpler than trying to process the RF signal at the high carrier frequency. This avoids dealing with high sample rates.
-2. Avoids analog demodulation circuits: Baseband I/Q sampling means FM demodulation can be done digitally rather than needing analog FM demod hardware.
-3. Hardware simplicity: Only a tunable RF front-end and ADC are needed since demodulation is done in software.
+- Antenna Reception: The antenna captures the FM signal in the desired frequency range, typically around 88 to 108 MHz for FM radio broadcasts.
+- RTL-SDR Dongle: The RTL-SDR dongle receives the RF (Radio Frequency) signal from the antenna. It digitizes this analog signal into digital samples, providing the I/Q (In-phase and Quadrature) data stream.
+    - RTL-SDR devices commonly utilize I/Q sampling, which captures both the in-phase and quadrature components of a signal. This method captures a spectrum that includes both positive and negative frequencies around the center frequency, effectively covering a bandwidth twice the size of the actual signal's bandwidth.
+    - For instance, in the case of an FM signal with a typical bandwidth of 200 kHz, I/Q sampling captures both the positive and negative frequency components within this bandwidth. This is why, with an RTL-SDR device using I/Q sampling, setting the sampling rate to match the signal bandwidth (200 kHz) covers the necessary spectrum to capture the entire FM signal.
+- Software Configuration: The user configures the SDR software on their computer. They specify the desired center frequency within the FM band (for instance, 98.5 MHz) and set the appropriate sampling rate, often matching or slightly exceeding the signal bandwidth.
+- Data Processing: The software processes the incoming I/Q samples, which contain information about both the in-phase and quadrature components of the received signal.
+- Filtering: Within the software, filtering techniques are applied to isolate the desired signal within the captured spectrum. Unwanted noise or adjacent signals may be filtered out to enhance the clarity of the target signal.
+- Demodulation: The FM modulation within the I/Q data is demodulated to extract the audio information. This process involves interpreting changes in the frequency of the signal to retrieve the audio content.
+- Audio Output: Once demodulated, the software provides an audio output. This audio can then be played through the computer's speakers or headphones, allowing the user to listen to the FM radio station.
 ## Install Dependencies
 In order to extract raw data from the SDR hardware, the `librtlsdr` binaries have to be installed on the host machine.
 
