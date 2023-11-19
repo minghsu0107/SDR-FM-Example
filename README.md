@@ -4,6 +4,7 @@ This example service utilizes software-defined radio (SDR) to extract audio stre
 SDR shifts the radio signal processing like tuning and demodulation from specialized analog hardware to software running on a computer's digital CPU. This allows SDR to access a wider range of the radio spectrum than a traditional analog receiver locked to a single band like FM. If physical SDR hardware is not available, the service can use mock data that emulates a radio transmission, providing flexibility. So even without a real over-the-air signal, the service can ingest audio streams as if they were broadcast over FM radio.
 
 For more information about the `librtlsdr` library and the `rtl_fm` usage, see [librtlsdr](https://github.com/librtlsdr/librtlsdr) and [Rtl_fm Guide](http://kmkeen.com/rtl-demod-guide/). Overall, this service exemplifies using SDR to acquire and process wireless signals at the edge.
+
 ## Side Note
 - Antenna Reception: The antenna captures the FM signal in the desired frequency range, typically around 88 to 108 MHz for FM radio broadcasts.
 - RTL-SDR Dongle: The RTL-SDR dongle receives the RF (Radio Frequency) signal from the antenna. It digitizes this analog signal into digital samples, providing the I/Q (In-phase and Quadrature) data stream.
@@ -14,6 +15,8 @@ For more information about the `librtlsdr` library and the `rtl_fm` usage, see [
 - Filtering: Within the software, filtering techniques are applied to isolate the desired signal within the captured spectrum. Unwanted noise or adjacent signals may be filtered out to enhance the clarity of the target signal.
 - Demodulation: The FM modulation within the I/Q data is demodulated to extract the audio information. This process involves interpreting changes in the frequency of the signal to retrieve the audio content.
 - Audio Output: Once demodulated, the software provides an audio output. This audio can then be played through the computer's speakers or headphones, allowing the user to listen to the FM radio station.
+
+<img width="1178" alt="image" src="https://github.com/minghsu0107/SDR-FM-Example/assets/50090692/3ebc53b1-537a-4dd7-82fd-ac5ab331df3f">
 ## Install Dependencies
 In order to extract raw data from the SDR hardware, the `librtlsdr` binaries have to be installed on the host machine.
 
