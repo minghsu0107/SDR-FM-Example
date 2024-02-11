@@ -17,6 +17,7 @@ For more information about the `librtlsdr` library and the `rtl_fm` usage, see [
 - Audio Output: Once demodulated, the software provides an audio output. This audio can then be played through the computer's speakers or headphones, allowing the user to listen to the FM radio station.
 
 <img width="1178" alt="image" src="https://github.com/minghsu0107/SDR-FM-Example/assets/50090692/3ebc53b1-537a-4dd7-82fd-ac5ab331df3f">
+
 ## Install Dependencies
 In order to extract raw data from the SDR hardware, the `librtlsdr` binaries have to be installed on the host machine.
 
